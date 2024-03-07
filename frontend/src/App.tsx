@@ -30,7 +30,9 @@ const App = () => {
 
   return (
     <div>
-      {imageName && <img src={`a/${imageName}`} alt="Current" />}
+      {imageName && (
+        <img src={`http://localhost:3001/images/${imageName}`} alt="Current" />
+      )}
       <button onClick={moveImage}>Move Image</button>
     </div>
   );

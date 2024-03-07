@@ -8,6 +8,8 @@ const PORT = 3001;
 // CORSの設定
 app.use(cors());
 
+app.use("/images", express.static("/Users/takahashiyuuho/Desktop/a"));
+
 app.set("port", process.env.PORT || 3001);
 app.get("/", (req, res) => {
   res.send("Hello, World!");
