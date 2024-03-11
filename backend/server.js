@@ -37,8 +37,12 @@ app.get("/get-image", (req, res) => {
 // 画像を移動するエンドポイント
 app.get("/move-image/:imageName", (req, res) => {
   const { imageName } = req.params;
+  const folder = req.query.folder;
   const oldPath = path.join("/Users/takahashiyuuho/Desktop/a", imageName);
-  const newPath = path.join("/Users/takahashiyuuho/Desktop/b", imageName);
+  const newPath = path.join(
+    `/Users/takahashiyuuho/Desktop/${folder}`,
+    imageName
+  );
 
   fs.rename(oldPath, newPath, (err) => {
     if (err) {
