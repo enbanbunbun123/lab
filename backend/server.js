@@ -2,6 +2,7 @@ const express = require("express");
 const fs = require("fs");
 const path = require("path");
 const cors = require("cors");
+const { spawn } = require("child_process");
 const app = express();
 const PORT = 3001;
 
@@ -49,6 +50,30 @@ app.get("/move-image/:imageName", (req, res) => {
       return res.status(500).send(err);
     }
     res.send({ message: "Image moved successfully" });
+  });
+});
+
+// 音声認識を開始するエンドポイント
+app.get("/start-speech-recognition", (req, res) => {
+  console.log("Starting speech recognition...");
+  const pythonProcess = spawn("python", [
+    "/Users/takahashiyuuho/Documents/lab/speech-recognition/index.py",
+  ]);
+  console.log("Python script started");
+  let outputData = "";
+
+  pythonProcess.stdout.on("data", (data) => {
+    outputData += data.toString();
+    console.log(`stdout: ${data}`);
+  });
+
+  pythonProcess.stderr.on("data", (data) => {
+    console.error(`stderr: ${data}`);
+  });
+
+  pythonProcess.on("close", (code) => {
+    console.log(`Python script exited with code ${code}`);
+    res.json({ text: outputData }); // 音声認識結果をJSON形式で送信
   });
 });
 

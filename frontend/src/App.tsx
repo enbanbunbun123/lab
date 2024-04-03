@@ -4,6 +4,7 @@ import "./stylesheet/app.scss";
 
 const App = () => {
   const [imageName, setImageName] = useState("");
+  const [recognizedText, setRecognizedText] = useState("");
 
   const getImage = async () => {
     try {
@@ -27,6 +28,21 @@ const App = () => {
     }
   };
 
+  const startSpeechRecongnition = async () => {
+    try {
+      console.log("bbb");
+      const response = await axios.get(
+        "http://localhost:3001/start-speech-recognition",
+        { timeout: 10000 }
+      ); // 10秒タイムアウト
+      setRecognizedText(response.data.text);
+      console.log("aaaa");
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error starting speech recognition:", error);
+    }
+  };
+
   useEffect(() => {
     getImage();
   }, []);
@@ -47,6 +63,10 @@ const App = () => {
         <button onClick={() => moveImage("d")}>Move to d</button>
         <button onClick={() => moveImage("e")}>Move to e</button>
         <button onClick={() => moveImage("f")}>Move to f</button>
+      </div>
+      <div className="app_speech-recognition-button">
+        <button onClick={() => startSpeechRecongnition()}>音声認識開始</button>
+        <p>Recognized Text: {recognizedText}</p>
       </div>
     </div>
   );
