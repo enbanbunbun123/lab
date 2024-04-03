@@ -1,0 +1,18 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+
+  &__input-image {
+    img {
+      max-width: 200px;
+      height: auto;
+    }
+    &__buttons {
+      button {
+        margin: 0 10px; // ボタン間の余白（必要に応じて調整）
+      }
+    }
+  }
+}

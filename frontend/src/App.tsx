@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "./stylesheet/app.scss";
 
 const App = () => {
   const [imageName, setImageName] = useState("");
@@ -31,15 +32,22 @@ const App = () => {
   }, []);
 
   return (
-    <div>
-      {imageName && (
-        <img src={`http://localhost:3001/images/${imageName}`} alt="Current" />
-      )}
-      <button onClick={() => moveImage("b")}>Move to b</button>
-      <button onClick={() => moveImage("c")}>Move to c</button>
-      <button onClick={() => moveImage("d")}>Move to d</button>
-      <button onClick={() => moveImage("e")}>Move to e</button>
-      <button onClick={() => moveImage("f")}>Move to f</button>
+    <div className="app">
+      <div className="app__input-image">
+        {imageName && (
+          <img
+            src={`http://localhost:3001/images/${imageName}`}
+            alt="Current"
+          />
+        )}
+      </div>
+      <div className="app__buttons">
+        <button onClick={() => moveImage("b")}>Move to b</button>
+        <button onClick={() => moveImage("c")}>Move to c</button>
+        <button onClick={() => moveImage("d")}>Move to d</button>
+        <button onClick={() => moveImage("e")}>Move to e</button>
+        <button onClick={() => moveImage("f")}>Move to f</button>
+      </div>
     </div>
   );
 };
