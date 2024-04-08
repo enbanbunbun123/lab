@@ -21,3 +21,7 @@
 ```cd speech-recognition ```
 
 ``` python index.py ```
+
+
+### 環境変更による修正
+・backend/server.jsの/move-imageエンドポイントのフォルダパスを変更する
