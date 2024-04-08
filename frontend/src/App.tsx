@@ -41,6 +41,14 @@ const App = () => {
       );
       const recognizedText = filteredLines.join("\n");
       setRecognizedText(recognizedText);
+
+      if (recognizedText === "コイル") {
+        moveImage("coil");
+      }
+      if (recognizedText === "コンデンサ") {
+        moveImage("condenser");
+      }
+
       console.log(response.data);
     } catch (error) {
       console.error("Error starting speech recognition:", error);
@@ -62,8 +70,8 @@ const App = () => {
         )}
       </div>
       <div className="app__buttons">
-        <button onClick={() => moveImage("b")}>Move to b</button>
-        <button onClick={() => moveImage("c")}>Move to c</button>
+        <button onClick={() => moveImage("coil")}>coil</button>
+        <button onClick={() => moveImage("condenser")}>condenser</button>
         <button onClick={() => moveImage("d")}>Move to d</button>
         <button onClick={() => moveImage("e")}>Move to e</button>
         <button onClick={() => moveImage("f")}>Move to f</button>

@@ -9,7 +9,7 @@ const PORT = 3001;
 // CORSの設定
 app.use(cors());
 
-app.use("/images", express.static("/Users/takahashiyuuho/Desktop/a"));
+app.use("/images", express.static("/Users/takahashiyuuho/Desktop/unknown"));
 
 app.set("port", process.env.PORT || 3001);
 app.get("/", (req, res) => {
@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
 
 // 画像を取得するエンドポイント
 app.get("/get-image", (req, res) => {
-  const directoryPath = "/Users/takahashiyuuho/Desktop/a";
+  const directoryPath = "/Users/takahashiyuuho/Desktop/unknown";
   fs.readdir(directoryPath, (err, files) => {
     if (err) {
       return res.status(500).send(err);
@@ -39,7 +39,7 @@ app.get("/get-image", (req, res) => {
 app.get("/move-image/:imageName", (req, res) => {
   const { imageName } = req.params;
   const folder = req.query.folder;
-  const oldPath = path.join("/Users/takahashiyuuho/Desktop/a", imageName);
+  const oldPath = path.join("/Users/takahashiyuuho/Desktop/unknown", imageName);
   const newPath = path.join(
     `/Users/takahashiyuuho/Desktop/${folder}`,
     imageName
