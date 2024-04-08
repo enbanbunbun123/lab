@@ -39,7 +39,7 @@ with sr.Microphone() as source:
     try:
         # Googleの音声認識APIを使用して音声をテキストに変換
         text = r.recognize_google(audio, language='ja-JP')
-        print("認識されたテキスト: " + text)
+        # print("認識されたテキスト: " + text)
         # 結果を標準出力に出力
         print(text, file=sys.stdout)
     except sr.UnknownValueError:

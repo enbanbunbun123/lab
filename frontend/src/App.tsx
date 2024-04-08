@@ -30,13 +30,17 @@ const App = () => {
 
   const startSpeechRecongnition = async () => {
     try {
-      console.log("bbb");
       const response = await axios.get(
         "http://localhost:3001/start-speech-recognition",
         { timeout: 10000 }
       ); // 10秒タイムアウト
-      setRecognizedText(response.data.text);
-      console.log("aaaa");
+
+      const lines = response.data.text.split("\n");
+      const filteredLines = lines.filter(
+        (line: string) => !line.includes("音声を認識中です...")
+      );
+      const recognizedText = filteredLines.join("\n");
+      setRecognizedText(recognizedText);
       console.log(response.data);
     } catch (error) {
       console.error("Error starting speech recognition:", error);
@@ -66,7 +70,7 @@ const App = () => {
       </div>
       <div className="app_speech-recognition-button">
         <button onClick={() => startSpeechRecongnition()}>音声認識開始</button>
-        <p>Recognized Text: {recognizedText}</p>
+        <p>音声認識結果: {recognizedText}</p>
       </div>
     </div>
   );
