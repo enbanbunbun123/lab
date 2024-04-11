@@ -39,13 +39,15 @@ const App = () => {
       const filteredLines = lines.filter(
         (line: string) => !line.includes("音声を認識中です...")
       );
-      const recognizedText = filteredLines.join("\n");
-      setRecognizedText(recognizedText);
+      const voiceRecognizedText = filteredLines.join("\n");
+      setRecognizedText(voiceRecognizedText);
+      console.log(voiceRecognizedText);
+      const trimmedVoiceRecognizedText = voiceRecognizedText.trim();
 
-      if (recognizedText === "コイル") {
+      if (trimmedVoiceRecognizedText === "コイル") {
         moveImage("coil");
       }
-      if (recognizedText === "コンデンサ") {
+      if (trimmedVoiceRecognizedText === "コンデンサ") {
         moveImage("condenser");
       }
 
