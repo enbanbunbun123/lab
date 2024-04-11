@@ -121,6 +121,9 @@ const App = () => {
 
   return (
     <Box className="app">
+      <Text fontSize="xl" fontWeight="bold" mb={4} margin="40px 0 10px">
+        分類対象の画像
+      </Text>
       <Box className="app__input-image">
         {imageName && (
           <Image
@@ -131,7 +134,17 @@ const App = () => {
         )}
       </Box>
 
-      <HStack spacing={4} margin="20px 0 0">
+      <Text
+        fontSize="xl"
+        fontWeight="bold"
+        mb={4}
+        textAlign="center"
+        margin="60px 0 0"
+      >
+        ボタンで分類する
+      </Text>
+
+      <HStack spacing={4} margin="10px 0 0">
         <Button
           onClick={() => moveImage("Coil")}
           variant="outline"
@@ -189,7 +202,10 @@ const App = () => {
       </HStack>
 
       <VStack spacing={4}>
-        <Text fontSize="md" margin="20px 0 10px">
+        <Text fontSize="xl" fontWeight="bold" mb={4} margin="60px 0 0">
+          音声で分類する
+        </Text>
+        <Text fontSize="md" fontWeight="semibold">
           音声認識結果: {recognizedText}
         </Text>
         <Button
