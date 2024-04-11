@@ -45,10 +45,31 @@ const App = () => {
       const trimmedVoiceRecognizedText = voiceRecognizedText.trim();
 
       if (trimmedVoiceRecognizedText === "コイル") {
-        moveImage("coil");
+        moveImage("Coil");
       }
-      if (trimmedVoiceRecognizedText === "コンデンサ") {
-        moveImage("condenser");
+      if (
+        trimmedVoiceRecognizedText === "コンデンサ" ||
+        trimmedVoiceRecognizedText === "コンデンサー"
+      ) {
+        moveImage("Condenser");
+      }
+      if (
+        trimmedVoiceRecognizedText === "IC" ||
+        trimmedVoiceRecognizedText === "アイシー"
+      ) {
+        moveImage("IC");
+      }
+      if (trimmedVoiceRecognizedText === "コネクター") {
+        moveImage("Connector");
+      }
+      if (
+        trimmedVoiceRecognizedText === "PCB" ||
+        trimmedVoiceRecognizedText === "ピーシービー"
+      ) {
+        moveImage("PCB");
+      }
+      if (trimmedVoiceRecognizedText === "メタル") {
+        moveImage("Metal");
       }
 
       console.log(response.data);
@@ -72,11 +93,12 @@ const App = () => {
         )}
       </div>
       <div className="app__buttons">
-        <button onClick={() => moveImage("coil")}>coil</button>
-        <button onClick={() => moveImage("condenser")}>condenser</button>
-        <button onClick={() => moveImage("d")}>Move to d</button>
-        <button onClick={() => moveImage("e")}>Move to e</button>
-        <button onClick={() => moveImage("f")}>Move to f</button>
+        <button onClick={() => moveImage("Coil")}>coil</button>
+        <button onClick={() => moveImage("Condenser")}>condenser</button>
+        <button onClick={() => moveImage("IC")}>IC</button>
+        <button onClick={() => moveImage("connector")}>Connector</button>
+        <button onClick={() => moveImage("PCB")}>PCB</button>
+        <button onClick={() => moveImage("Metal")}>Metal</button>
       </div>
       <div className="app_speech-recognition-button">
         <button onClick={() => startSpeechRecongnition()}>音声認識開始</button>
