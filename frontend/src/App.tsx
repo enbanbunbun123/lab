@@ -45,11 +45,20 @@ const App = () => {
   };
 
   const startSpeechRecongnition = async () => {
+    const toastId = toast({
+      title: "音声を認識中です...",
+      status: "info",
+      duration: null, // トーストを自動的に閉じないようにする
+      isClosable: false, // 手動で閉じることもできないようにする
+    });
+
     try {
       const response = await axios.get(
         "http://localhost:3001/start-speech-recognition",
         { timeout: 10000 }
       ); // 10秒タイムアウト
+
+      toast.close(toastId);
 
       const lines = response.data.text.split("\n");
       const filteredLines = lines.filter(
@@ -62,35 +71,47 @@ const App = () => {
 
       if (trimmedVoiceRecognizedText === "コイル") {
         moveImage("Coil");
-      }
-      if (
+      } else if (
         trimmedVoiceRecognizedText === "コンデンサ" ||
         trimmedVoiceRecognizedText === "コンデンサー"
       ) {
         moveImage("Condenser");
-      }
-      if (
+      } else if (
         trimmedVoiceRecognizedText === "IC" ||
         trimmedVoiceRecognizedText === "アイシー"
       ) {
         moveImage("IC");
-      }
-      if (trimmedVoiceRecognizedText === "コネクター") {
+      } else if (trimmedVoiceRecognizedText === "コネクター") {
         moveImage("Connector");
-      }
-      if (
+      } else if (
         trimmedVoiceRecognizedText === "PCB" ||
         trimmedVoiceRecognizedText === "ピーシービー"
       ) {
         moveImage("PCB");
-      }
-      if (trimmedVoiceRecognizedText === "メタル") {
+      } else if (trimmedVoiceRecognizedText === "メタル") {
         moveImage("Metal");
+      } else {
+        toast({
+          title: "該当する単語がありませんでした",
+          status: "warning",
+          duration: 2000,
+          isClosable: true,
+        });
       }
 
       console.log(response.data);
     } catch (error) {
       console.error("Error starting speech recognition:", error);
+
+      toast.close(toastId);
+      // エラートーストを表示
+      toast({
+        title: "音声認識に失敗しました",
+        description: "もう一度試してください",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
     }
   };
 
