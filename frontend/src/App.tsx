@@ -1,9 +1,18 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./stylesheet/app.scss";
-import { Box, Button, HStack, Image, Text, VStack } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  HStack,
+  Image,
+  Text,
+  VStack,
+  useToast,
+} from "@chakra-ui/react";
 
 const App = () => {
+  const toast = useToast();
   const [imageName, setImageName] = useState("");
   const [recognizedText, setRecognizedText] = useState("");
 
@@ -23,6 +32,12 @@ const App = () => {
           `http://localhost:3001/move-image/${imageName}?folder=${folderName}`
         );
         getImage();
+        toast({
+          title: `${folderName}に分類されました`,
+          status: "success",
+          duration: 2000,
+          isClosable: true,
+        });
       }
     } catch (error) {
       console.error(error);
