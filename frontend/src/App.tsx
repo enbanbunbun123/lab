@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./stylesheet/app.scss";
+import { Box, Button, HStack, Image, Text, VStack } from "@chakra-ui/react";
 
 const App = () => {
   const [imageName, setImageName] = useState("");
@@ -83,28 +84,89 @@ const App = () => {
   }, []);
 
   return (
-    <div className="app">
-      <div className="app__input-image">
+    <Box className="app">
+      <Box className="app__input-image">
         {imageName && (
-          <img
+          <Image
             src={`http://localhost:3001/images/${imageName}`}
             alt="Current"
+            boxSize="sm"
           />
         )}
-      </div>
-      <div className="app__buttons">
-        <button onClick={() => moveImage("Coil")}>coil</button>
-        <button onClick={() => moveImage("Condenser")}>condenser</button>
-        <button onClick={() => moveImage("IC")}>IC</button>
-        <button onClick={() => moveImage("connector")}>Connector</button>
-        <button onClick={() => moveImage("PCB")}>PCB</button>
-        <button onClick={() => moveImage("Metal")}>Metal</button>
-      </div>
-      <div className="app_speech-recognition-button">
-        <button onClick={() => startSpeechRecongnition()}>音声認識開始</button>
-        <p>音声認識結果: {recognizedText}</p>
-      </div>
-    </div>
+      </Box>
+
+      <HStack spacing={4} margin="20px 0 0">
+        <Button
+          onClick={() => moveImage("Coil")}
+          variant="outline"
+          borderColor="gray.500"
+          color="black"
+          _hover={{ bg: "gray.100", borderColor: "gray.600" }}
+        >
+          Coil
+        </Button>
+        <Button
+          onClick={() => moveImage("Condenser")}
+          variant="outline"
+          borderColor="gray.500"
+          color="black"
+          _hover={{ bg: "gray.100", borderColor: "gray.600" }}
+        >
+          Condenser
+        </Button>
+        <Button
+          onClick={() => moveImage("IC")}
+          variant="outline"
+          borderColor="gray.500"
+          color="black"
+          _hover={{ bg: "gray.100", borderColor: "gray.600" }}
+        >
+          IC
+        </Button>
+        <Button
+          onClick={() => moveImage("Connector")}
+          variant="outline"
+          borderColor="gray.500"
+          color="black"
+          _hover={{ bg: "gray.100", borderColor: "gray.600" }}
+        >
+          Connector
+        </Button>
+        <Button
+          onClick={() => moveImage("PCB")}
+          variant="outline"
+          borderColor="gray.500"
+          color="black"
+          _hover={{ bg: "gray.100", borderColor: "gray.600" }}
+        >
+          PCB
+        </Button>
+        <Button
+          onClick={() => moveImage("Metal")}
+          variant="outline"
+          borderColor="gray.500"
+          color="black"
+          _hover={{ bg: "gray.100", borderColor: "gray.600" }}
+        >
+          Metal
+        </Button>
+      </HStack>
+
+      <VStack spacing={4}>
+        <Text fontSize="md" margin="20px 0 10px">
+          音声認識結果: {recognizedText}
+        </Text>
+        <Button
+          onClick={() => startSpeechRecongnition()}
+          variant="outline"
+          borderColor="gray.500"
+          color="black"
+          _hover={{ bg: "gray.100", borderColor: "gray.600" }}
+        >
+          音声認識開始
+        </Button>
+      </VStack>
+    </Box>
   );
 };
 
