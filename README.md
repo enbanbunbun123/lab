@@ -1,5 +1,8 @@
 # ローカルの環境から画像フォルダを読み込み、音声認識によって画像を分類するアプリ
 
+## 技術構成
+<img width="1148" alt="スクリーンショット 2024-04-15 18 03 33" src="https://github.com/enbanbunbun123/lab/assets/130529456/ae3c5059-d14e-4be6-8b16-7887bbe310bd">
+
 ## ローカル環境立ち上げ
 ・backendでローカルの環境から画像を取得してくるので、backend->frontendでrunする
 
