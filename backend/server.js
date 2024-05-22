@@ -9,7 +9,7 @@ const PORT = 3001;
 // CORSの設定
 app.use(cors());
 
-app.use("/images", express.static("/Users/takahashiyuuho/Desktop/unknown"));
+app.use("/images", express.static("C:\\研究(ロボットマニピュレータ)\\MATLAB_研究\\高橋_MATLAB\\転移学習_VGG16\\Unknown"));
 
 app.set("port", process.env.PORT || 3001);
 app.get("/", (req, res) => {
@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
 
 // 画像を取得するエンドポイント
 app.get("/get-image", (req, res) => {
-  const directoryPath = "/Users/takahashiyuuho/Desktop/unknown";
+  const directoryPath = "C:\\研究(ロボットマニピュレータ)\\MATLAB_研究\\高橋_MATLAB\\転移学習_VGG16\\Unknown";
   fs.readdir(directoryPath, (err, files) => {
     if (err) {
       return res.status(500).send(err);
@@ -39,9 +39,9 @@ app.get("/get-image", (req, res) => {
 app.get("/move-image/:imageName", (req, res) => {
   const { imageName } = req.params;
   const folder = req.query.folder;
-  const oldPath = path.join("/Users/takahashiyuuho/Desktop/unknown", imageName);
+  const oldPath = path.join("C:\\研究(ロボットマニピュレータ)\\MATLAB_研究\\高橋_MATLAB\\転移学習_VGG16\\Unknown", imageName);
   const newPath = path.join(
-    `/Users/takahashiyuuho/Desktop/${folder}`,
+    `C:\\研究(ロボットマニピュレータ)\\MATLAB_研究\\高橋_MATLAB\\転移学習_VGG16\\proto1_Learn\\${folder}`,
     imageName
   );
 
@@ -57,7 +57,7 @@ app.get("/move-image/:imageName", (req, res) => {
 app.get("/start-speech-recognition", (req, res) => {
   console.log("Starting speech recognition...");
   const pythonProcess = spawn("python", [
-    "/Users/takahashiyuuho/Documents/lab/speech-recognition/index.py",
+    "C:\\Users\\CapiLab\\Desktop\\lab\\speech-recognition\\index.py",
   ]);
   console.log("Python script started");
   let outputData = "";
