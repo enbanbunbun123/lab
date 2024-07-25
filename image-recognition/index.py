@@ -2,6 +2,7 @@ import base64
 import requests
 from dotenv import load_dotenv
 import os
+import sys
 
 load_dotenv()
 # OpenAI API Key
@@ -13,7 +14,7 @@ def encode_image(image_path):
     return base64.b64encode(image_file.read()).decode('utf-8')
 
 # Path to your image
-image_path = "../higher-image/image1.png"
+image_path = sys.argv[1]
 
 # Getting the base64 string
 base64_image = encode_image(image_path)
