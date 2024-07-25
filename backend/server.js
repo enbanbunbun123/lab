@@ -103,6 +103,31 @@ app.get("/start-speech-recognition", (req, res) => {
   });
 });
 
+app.post("/start-image-recognition", (req, res) => {
+  const imagePath = req.body.imagePath;
+  console.log("Starting image recognition...");
+  const pythonProcess = spawn("python", [
+    "/Users/takahashiyuuho/Documents/lab/image-recognition/index.py",
+    imagePath,
+  ]);
+  console.log("Python script started");
+  let outputData = "";
+
+  pythonProcess.stdout.on("data", (data) => {
+    outputData += data.toString();
+    console.log(`stdout: ${data}`);
+  });
+
+  pythonProcess.stderr.on("data", (data) => {
+    console.error(`stderr: ${data}`);
+  });
+
+  pythonProcess.on("close", (code) => {
+    console.log(`Python script exited with code ${code}`);
+    res.json({ text: outputData });
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
