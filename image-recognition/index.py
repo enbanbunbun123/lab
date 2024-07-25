@@ -1,8 +1,11 @@
 import base64
 import requests
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
 # OpenAI API Key
-api_key = ""
+api_key = os.getenv("OPENAI_API_KEY")
 
 # Function to encode the image
 def encode_image(image_path):
