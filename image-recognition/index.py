@@ -32,7 +32,7 @@ payload = {
       "content": [
         {
           "type": "text",
-          "text": "What’s in this image?"
+          "text": "This image is either a coil, condenser, connector, metal connector, PCB base, or IC chip. Which one do you think? Please choose one out of the six and print only the answer."
         },
         {
           "type": "image_url",
