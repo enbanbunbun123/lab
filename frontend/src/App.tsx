@@ -127,106 +127,112 @@ const App = () => {
   return (
     <Box className="app">
       <Button onClick={toggleDisplay} variant="outline" mb={4}>
-        {isOn ? "オフにする" : "オンにする"}
+        {isOn ? "自動分類モードに切り替える" : "手動分類モードに切り替える"}
       </Button>
 
-      <Text fontSize="xl" fontWeight="bold" mb={4} margin="40px 0 10px">
-        分類対象の画像
-      </Text>
-      <Box className="app__input-image">
-        {imageName && (
-          <Image
-            src={`http://localhost:3001/images/${imageName}`}
-            alt="Current"
-            boxSize="sm"
-          />
-        )}
-      </Box>
+      {isOn ? (
+        <>
+          <Text fontSize="xl" fontWeight="bold" mb={4} margin="40px 0 10px">
+            分類対象の画像
+          </Text>
+          <Box className="app__input-image">
+            {imageName && (
+              <Image
+                src={`http://localhost:3001/images/${imageName}`}
+                alt="Current"
+                boxSize="sm"
+              />
+            )}
+          </Box>
 
-      <Text
-        fontSize="xl"
-        fontWeight="bold"
-        mb={4}
-        textAlign="center"
-        margin="60px 0 0"
-      >
-        ボタンで分類する
-      </Text>
+          <Text
+            fontSize="xl"
+            fontWeight="bold"
+            mb={4}
+            textAlign="center"
+            margin="60px 0 0"
+          >
+            ボタンで分類する
+          </Text>
 
-      <HStack spacing={4} margin="10px 0 0">
-        <Button
-          onClick={() => moveImage("Coil")}
-          variant="outline"
-          borderColor="gray.500"
-          color="black"
-          _hover={{ bg: "gray.100", borderColor: "gray.600" }}
-        >
-          Coil
-        </Button>
-        <Button
-          onClick={() => moveImage("Condenser")}
-          variant="outline"
-          borderColor="gray.500"
-          color="black"
-          _hover={{ bg: "gray.100", borderColor: "gray.600" }}
-        >
-          Condenser
-        </Button>
-        <Button
-          onClick={() => moveImage("IC")}
-          variant="outline"
-          borderColor="gray.500"
-          color="black"
-          _hover={{ bg: "gray.100", borderColor: "gray.600" }}
-        >
-          IC
-        </Button>
-        <Button
-          onClick={() => moveImage("Connector")}
-          variant="outline"
-          borderColor="gray.500"
-          color="black"
-          _hover={{ bg: "gray.100", borderColor: "gray.600" }}
-        >
-          Connector
-        </Button>
-        <Button
-          onClick={() => moveImage("PCB")}
-          variant="outline"
-          borderColor="gray.500"
-          color="black"
-          _hover={{ bg: "gray.100", borderColor: "gray.600" }}
-        >
-          PCB
-        </Button>
-        <Button
-          onClick={() => moveImage("Metal")}
-          variant="outline"
-          borderColor="gray.500"
-          color="black"
-          _hover={{ bg: "gray.100", borderColor: "gray.600" }}
-        >
-          Metal
-        </Button>
-      </HStack>
+          <HStack spacing={4} margin="10px 0 0">
+            <Button
+              onClick={() => moveImage("Coil")}
+              variant="outline"
+              borderColor="gray.500"
+              color="black"
+              _hover={{ bg: "gray.100", borderColor: "gray.600" }}
+            >
+              Coil
+            </Button>
+            <Button
+              onClick={() => moveImage("Condenser")}
+              variant="outline"
+              borderColor="gray.500"
+              color="black"
+              _hover={{ bg: "gray.100", borderColor: "gray.600" }}
+            >
+              Condenser
+            </Button>
+            <Button
+              onClick={() => moveImage("IC")}
+              variant="outline"
+              borderColor="gray.500"
+              color="black"
+              _hover={{ bg: "gray.100", borderColor: "gray.600" }}
+            >
+              IC
+            </Button>
+            <Button
+              onClick={() => moveImage("Connector")}
+              variant="outline"
+              borderColor="gray.500"
+              color="black"
+              _hover={{ bg: "gray.100", borderColor: "gray.600" }}
+            >
+              Connector
+            </Button>
+            <Button
+              onClick={() => moveImage("PCB")}
+              variant="outline"
+              borderColor="gray.500"
+              color="black"
+              _hover={{ bg: "gray.100", borderColor: "gray.600" }}
+            >
+              PCB
+            </Button>
+            <Button
+              onClick={() => moveImage("Metal")}
+              variant="outline"
+              borderColor="gray.500"
+              color="black"
+              _hover={{ bg: "gray.100", borderColor: "gray.600" }}
+            >
+              Metal
+            </Button>
+          </HStack>
 
-      <VStack spacing={4}>
-        <Text fontSize="xl" fontWeight="bold" mb={4} margin="60px 0 0">
-          音声で分類する
-        </Text>
-        <Text fontSize="md" fontWeight="semibold">
-          音声認識結果: {recognizedText}
-        </Text>
-        <Button
-          onClick={() => startSpeechRecongnition()}
-          variant="outline"
-          borderColor="gray.500"
-          color="black"
-          _hover={{ bg: "gray.100", borderColor: "gray.600" }}
-        >
-          音声認識開始
-        </Button>
-      </VStack>
+          <VStack spacing={4}>
+            <Text fontSize="xl" fontWeight="bold" mb={4} margin="60px 0 0">
+              音声で分類する
+            </Text>
+            <Text fontSize="md" fontWeight="semibold">
+              音声認識結果: {recognizedText}
+            </Text>
+            <Button
+              onClick={() => startSpeechRecongnition()}
+              variant="outline"
+              borderColor="gray.500"
+              color="black"
+              _hover={{ bg: "gray.100", borderColor: "gray.600" }}
+            >
+              音声認識開始
+            </Button>
+          </VStack>
+        </>
+      ) : (
+        <></>
+      )}
     </Box>
   );
 };
