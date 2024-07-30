@@ -15,6 +15,11 @@ const App = () => {
   const toast = useToast();
   const [imageName, setImageName] = useState("");
   const [recognizedText, setRecognizedText] = useState("");
+  const [isOn, setIsOn] = useState(true);
+
+  const toggleDisplay = () => {
+    setIsOn(!isOn);
+  };
 
   const getImage = async () => {
     try {
@@ -121,6 +126,10 @@ const App = () => {
 
   return (
     <Box className="app">
+      <Button onClick={toggleDisplay} variant="outline" mb={4}>
+        {isOn ? "オフにする" : "オンにする"}
+      </Button>
+
       <Text fontSize="xl" fontWeight="bold" mb={4} margin="40px 0 10px">
         分類対象の画像
       </Text>
