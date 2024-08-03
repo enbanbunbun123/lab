@@ -103,6 +103,7 @@ app.get("/start-speech-recognition", (req, res) => {
   });
 });
 
+// GPT APIによる画像認識を開始するエンドポイント
 app.post("/start-image-recognition", (req, res) => {
   const imagePath = req.body.imagePath;
   console.log("Starting image recognition...");
