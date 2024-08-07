@@ -303,7 +303,20 @@ const App = () => {
           </VStack>
         </>
       ) : (
-        <></>
+        <>
+          <Text fontSize="xl" fontWeight="bold" mb={4} margin="40px 0 10px">
+            分類対象の画像
+          </Text>
+          <Box>
+            {imageName && (
+              <Image
+                src={`http://localhost:3001/images/${imageName}`}
+                alt="Current"
+                boxSize="sm"
+              />
+            )}
+          </Box>
+        </>
       )}
     </Box>
   );
