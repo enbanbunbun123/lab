@@ -120,6 +120,60 @@ const App = () => {
     }
   };
 
+  const startImageRecognition = async () => {
+    if (!imageName) return;
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3001/start-image-recognition",
+        {
+          imagePath: `http://localhost:3001/images/${imageName}`,
+        }
+      );
+
+      const result = response.data.text;
+      console.log("Image recognition result:", result);
+
+      if (result.includes("Coil")) {
+        moveImage("Coil");
+      } else if (result.includes("Condenser")) {
+        moveImage("Condenser");
+      } else if (result.includes("IC")) {
+        moveImage("IC");
+      } else if (result.includes("Connector")) {
+        moveImage("Connector");
+      } else if (result.includes("PCB")) {
+        moveImage("PCB");
+      } else if (result.includes("Metal")) {
+        moveImage("Metal");
+      } else {
+        toast({
+          title: "分類結果に該当するカテゴリーがありませんでした",
+          status: "warning",
+          duration: 2000,
+          isClosable: true,
+        });
+      }
+    } catch (error) {
+      console.error("Error during image recognition:", error);
+      toast({
+        title: "画像認識に失敗しました",
+        description: "もう一度試してください",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+  };
+
+  const handleQlassification = () => {
+    getImage().then(() => {
+      if (!imageName) {
+        startImageRecognition();
+      }
+    });
+  };
+
   useEffect(() => {
     getImage();
   }, []);
