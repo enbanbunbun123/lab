@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import "./stylesheet/app.scss";
 import {
@@ -16,6 +16,7 @@ const App = () => {
   const [imageName, setImageName] = useState("");
   const [recognizedText, setRecognizedText] = useState("");
   const [isOn, setIsOn] = useState(true);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const toggleDisplay = () => {
     setIsOn(!isOn);
@@ -176,7 +177,24 @@ const App = () => {
 
   useEffect(() => {
     getImage();
-  }, []);
+
+    if (!isOn) {
+      intervalRef.current = setInterval(() => {
+        startImageRecognition();
+      }, 300000);
+    } else {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+    }
+
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, [isOn]);
 
   return (
     <Box className="app">
