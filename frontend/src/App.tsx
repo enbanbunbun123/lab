@@ -181,7 +181,7 @@ const App = () => {
     if (!isOn) {
       intervalRef.current = setInterval(() => {
         startImageRecognition();
-      }, 300000);
+      }, 10000);
     } else {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
