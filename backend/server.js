@@ -15,6 +15,7 @@ app.use(
     "C:\\研究(ロボットマニピュレータ)\\MATLAB_研究\\高橋_MATLAB\\転移学習_VGG16\\Unknown"
   )
 );
+app.use(express.json());
 //macでのパス
 //app.use("/images", express.static("/Users/takahashiyuuho/Desktop/unknown"));
 
