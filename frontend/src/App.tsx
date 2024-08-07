@@ -139,13 +139,13 @@ const App = () => {
         moveImage("Coil");
       } else if (result.includes("Condenser")) {
         moveImage("Condenser");
-      } else if (result.includes("IC")) {
+      } else if (result.includes("IC chip")) {
         moveImage("IC");
       } else if (result.includes("Connector")) {
         moveImage("Connector");
-      } else if (result.includes("PCB")) {
+      } else if (result.includes("PCB base")) {
         moveImage("PCB");
-      } else if (result.includes("Metal")) {
+      } else if (result.includes("Metal connector")) {
         moveImage("Metal");
       } else {
         toast({
