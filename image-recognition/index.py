@@ -3,21 +3,24 @@ import requests
 from dotenv import load_dotenv
 import os
 import sys
+import requests
+from io import BytesIO
 
 load_dotenv()
 # OpenAI API Key
 api_key = os.getenv("OPENAI_API_KEY")
 
 # Function to encode the image
-def encode_image(image_path):
-  with open(image_path, "rb") as image_file:
-    return base64.b64encode(image_file.read()).decode('utf-8')
+def encode_image_from_url(image_url):
+    response = requests.get(image_url)
+    image_data = BytesIO(response.content)
+    return base64.b64encode(image_data.read()).decode('utf-8')
 
 # Path to your image
 image_path = sys.argv[1]
 
 # Getting the base64 string
-base64_image = encode_image(image_path)
+base64_image = encode_image_from_url(image_path)
 
 headers = {
   "Content-Type": "application/json",
