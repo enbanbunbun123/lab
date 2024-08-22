@@ -198,7 +198,7 @@ const App = () => {
 
   return (
     <Box className="app">
-      <Button onClick={toggleDisplay} variant="outline" mb={4}>
+      <Button onClick={toggleDisplay} variant="outline" mt={10}>
         {isOn ? "自動分類モードに切り替える" : "手動分類モードに切り替える"}
       </Button>
 
@@ -307,7 +307,7 @@ const App = () => {
           <Text fontSize="xl" fontWeight="bold" mb={4} margin="40px 0 10px">
             分類対象の画像
           </Text>
-          <Box>
+          <Box className="app__input-image">
             {imageName && (
               <Image
                 src={`http://localhost:3001/images/${imageName}`}
