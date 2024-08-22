@@ -167,14 +167,6 @@ const App = () => {
     }
   };
 
-  const handleQlassification = () => {
-    getImage().then(() => {
-      if (!imageName) {
-        startImageRecognition();
-      }
-    });
-  };
-
   useEffect(() => {
     getImage();
 
