@@ -171,8 +171,16 @@ const App = () => {
     getImage();
 
     if (!isOn) {
-      intervalRef.current = setInterval(() => {
-        startImageRecognition();
+      const toastId = toast({
+        title: "画像を認識しています",
+        status: "info",
+        duration: null,
+        isClosable: false,
+      });
+
+      intervalRef.current = setInterval(async () => {
+        await startImageRecognition();
+        toast.close(toastId);
       }, 30000);
     } else {
       if (intervalRef.current) {
